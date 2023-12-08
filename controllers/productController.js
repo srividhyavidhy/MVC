@@ -56,11 +56,28 @@ const deleteProduct = async(req, res) => {
     res.status(400).send({success:false,msg:error.message});
 }
 }
+//search products
+const searchProduct = async(req,res)=>{
+    try {
+      var search =req.body.search;
+      var product_data = await Product.find({"name":{ $regex: ".*"+search+".*",$options:'i' }});
+      if(product_data.length > 0){
+          res.status(200).send({success:true,msg:"Products Details",data:product_data});
+      }
+      else{
+        res.status(200).send({success:true,msg:"Products not found!"});  
+      }
+    } catch (error) {
+      res.status(400).send({success:false,msg:error.message});
+    }
+  }
+
 
 module.exports ={
           add_product,
           getProducts,
           getProduct,
           updateProduct,
-          deleteProduct
+          deleteProduct,
+          searchProduct
 }

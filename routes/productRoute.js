@@ -13,7 +13,7 @@ product_route.get('/get-products',product_controller.getProducts);
 product_route.get('/product/:_id',product_controller.getProduct);
 product_route.put('/update/:_id',product_controller.updateProduct);
 product_route.delete('/delete/:_id',product_controller.deleteProduct);
-
+product_route.get('/search-product', product_controller.searchProduct);
 
 module.exports = product_route;
 
