@@ -11,6 +11,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+
 mongoose.connect("mongodb://127.0.0.1:27017/Ecomerce")
 .then(() => console.log('Connected MongoDB!'));
 
@@ -50,6 +52,6 @@ app.use('/api', address_route);
 const buy_product_route = require("./routes/buyProductRoute")
 app.use('/api', buy_product_route);
 
-app.listen(3000, function(){
+app.listen(4000, function(){
    console.log("Server is Run....")
 })

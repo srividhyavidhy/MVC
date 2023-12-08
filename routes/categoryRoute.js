@@ -10,6 +10,9 @@ const auth = require("../middleware/auth");
 
 const category_controller = require("../controllers/categoryController");
 
-category_route.post('/add-category',auth,category_controller.addCategory);
+category_route.post('/add-category',category_controller.addCategory);
+
+category_route.get('/get-categorys',category_controller.get_categories);
+category_route.get('/category/:categoryId',category_controller.get_categorie);
 
 module.exports = category_route;
