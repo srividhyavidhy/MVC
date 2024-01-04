@@ -70,7 +70,7 @@ const register_user = async(req, res)=>{
             email:req.body.email,
             password:spassword,
             mobile:req.body.mobile,
-            image:req.file.filename,
+            image:req.body.image,
             type:req.body.type
             
         });
@@ -87,6 +87,14 @@ const register_user = async(req, res)=>{
 
     } catch (error) {
         res.status(400).send(error.message);
+    }
+}
+//get all users
+const getUsers = async(req, res) => {
+    try{ const users = await User.find({});
+    res.status(200).send({success:true,msg:"Product Data", data:users});
+    }catch (error) {
+        res.status(400).send({success:false,msg:error.message});
     }
 }
 //login Method
@@ -241,6 +249,7 @@ const  refresh_token = async(req,res)=>{
 module.exports = {
     register_user,
     user_login,
+    getUsers,
     update_password,
     forget_password,
     reset_password,
